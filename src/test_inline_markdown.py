@@ -1,6 +1,8 @@
 import unittest
 from inline_markdown import (
     split_nodes_delimiter,
+    extract_markdown_links,
+    extract_markdown_images,
 )
 
 from textnode import (
@@ -71,7 +73,7 @@ class TestInlineMarkdown(unittest.TestCase):
         node = TextNode("**bold** and *italic*", text_type_text)
         new_nodes = split_nodes_delimiter([node], "**", text_type_bold)
         new_nodes = split_nodes_delimiter(new_nodes, "*", text_type_italic)
-        self.assertListEqual(
+        self.assertEqual(
             [
                 TextNode("bold", text_type_bold),
                 TextNode(" and ", text_type_text),
